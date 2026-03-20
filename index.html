@@ -1,18 +1,150 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Key Generator</title>
 
-<h2>KEY GENERATOR</h2>
+<style>
+body {
+  margin: 0;
+    font-family: Arial;
+      color: white;
+        text-align: center;
+          background: black;
+            overflow: hidden;
+            }
 
-<button onclick="gen()">GENERATE KEY</button>
+            canvas {
+              position: fixed;
+                top: 0;
+                  left: 0;
+                    z-index: -1;
+                    }
 
-<script>
-async function gen() {
-  let res = await fetch('/api/generate');
-    let data = await res.json();
-      alert("Key: " + data.key);
-      }
-      </script>
+                    .card {
+                      margin: 80px auto;
+                        width: 320px;
+                          padding: 20px;
+                            background: rgba(0,0,0,0.8);
+                              border-radius: 20px;
+                                box-shadow: 0 0 20px cyan;
+                                }
 
-      </body>
-      </html>
+                                .btn {
+                                  display: block;
+                                    margin: 10px auto;
+                                      padding: 12px;
+                                        width: 80%;
+                                          border: none;
+                                            border-radius: 25px;
+                                              background: linear-gradient(45deg, #00f, #0ff);
+                                                color: white;
+                                                  font-size: 16px;
+                                                  }
+
+                                                  #loading {
+                                                    display: none;
+                                                      font-size: 18px;
+                                                        margin-top: 10px;
+                                                        }
+
+                                                        /* 🔥 NEW: LOGO STYLE */
+                                                        .logo {
+                                                          width: 100px;
+                                                            border-radius: 50%;
+                                                              margin-bottom: 10px;
+                                                              }
+                                                              </style>
+                                                              </head>
+
+                                                              <body>
+
+                                                              <canvas id="matrix"></canvas>
+
+                                                              <div class="card">
+
+                                                                <!-- 🔥 NEW: LOGO -->
+                                                                  <img src="https://i.supaimg.com/8bbbe2d4-c7db-47de-9ede-7d1cafa9fcbe/a57051df-40f7-4b8d-ad1e-314eb50e1679.jpg" class="logo">
+
+                                                                    <h2>GODXMODS KEY GENERATOR</h2>
+
+                                                                      <p>Game: Free Fire</p>
+                                                                        <p>Status: 1 Device</p>
+                                                                          <p>Validity: 1 Hour</p>
+
+                                                                            <!-- 🔥 CHANGED: Generate button -->
+                                                                              <button class="btn" onclick="getKey()">GENERATE KEY</button>
+
+                                                                                <button class="btn" onclick="openYT()">YOUTUBE</button>
+                                                                                  <button class="btn" onclick="openTG()">JOIN TELEGRAM</button>
+
+                                                                                    <div id="loading">⏳ Loading...</div>
+                                                                                      <div id="key"></div>
+
+                                                                                      </div>
+
+                                                                                      <script>
+                                                                                      // MATRIX BACKGROUND
+                                                                                      const canvas = document.getElementById("matrix");
+                                                                                      const ctx = canvas.getContext("2d");
+
+                                                                                      canvas.height = window.innerHeight;
+                                                                                      canvas.width = window.innerWidth;
+
+                                                                                      const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                                                                                      const fontSize = 14;
+                                                                                      const columns = canvas.width / fontSize;
+
+                                                                                      const drops = [];
+                                                                                      for (let x = 0; x < columns; x++) drops[x] = 1;
+
+                                                                                      function draw() {
+                                                                                        ctx.fillStyle = "rgba(0,0,0,0.05)";
+                                                                                          ctx.fillRect(0,0,canvas.width,canvas.height);
+
+                                                                                            ctx.fillStyle = "#0F0";
+                                                                                              ctx.font = fontSize + "px monospace";
+
+                                                                                                for (let i = 0; i < drops.length; i++) {
+                                                                                                    const text = letters[Math.floor(Math.random()*letters.length)];
+                                                                                                        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+                                                                                                            if (drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+                                                                                                                  drops[i] = 0;
+
+                                                                                                                      drops[i]++;
+                                                                                                                        }
+                                                                                                                        }
+                                                                                                                        setInterval(draw, 33);
+
+                                                                                                                        // 🔥 CHANGED: Generate → link open
+                                                                                                                        function getKey() {
+                                                                                                                          document.getElementById("loading").style.display = "block";
+
+                                                                                                                            setTimeout(() => {
+                                                                                                                                window.open("https://your-link.com", "_blank"); // 👉 यहाँ अपना link डाल
+                                                                                                                                    document.getElementById("loading").style.display = "none";
+                                                                                                                                      }, 2000);
+                                                                                                                                      }
+
+                                                                                                                                      // YOUTUBE
+                                                                                                                                      function openYT() {
+                                                                                                                                        document.getElementById("loading").style.display = "block";
+                                                                                                                                          setTimeout(() => {
+                                                                                                                                              window.open("https://youtube.com/@godxmouds-ug1qe", "_blank");
+                                                                                                                                                  document.getElementById("loading").style.display = "none";
+                                                                                                                                                    }, 2000);
+                                                                                                                                                    }
+
+                                                                                                                                                    // TELEGRAM
+                                                                                                                                                    function openTG() {
+                                                                                                                                                      document.getElementById("loading").style.display = "block";
+                                                                                                                                                        setTimeout(() => {
+                                                                                                                                                            window.open("https://t.me/e542k", "_blank");
+                                                                                                                                                                document.getElementById("loading").style.display = "none";
+                                                                                                                                                                  }, 2000);
+                                                                                                                                                                  }
+                                                                                                                                                                  </script>
+
+                                                                                                                                                                  </body>
+                                                                                                                                                                  </html>
