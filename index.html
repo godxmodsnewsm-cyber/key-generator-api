@@ -1,159 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Key Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GODXMODS KEY</title>
 
 <style>
 body {
-  margin: 0;
-    font-family: Arial;
-      background: black;
-        color: white;
-          text-align: center;
-            overflow: hidden;
-            }
-
-            /* MATRIX BACKGROUND */
-            canvas {
-              position: fixed;
-                top: 0;
-                  left: 0;
-                    z-index: -1;
+    margin: 0;
+        font-family: Arial;
+            background: black;
+                color: white;
+                    text-align: center;
                     }
 
-                    /* CARD */
-                    .card {
-                      width: 330px;
-                        margin: 60px auto;
-                          padding: 20px;
-                            border-radius: 20px;
-                              background: rgba(0,0,0,0.85);
-                                box-shadow: 0 0 25px #00ffff;
+                    .container {
+                        margin-top: 80px;
+                            padding: 20px;
+                                border-radius: 15px;
                                 }
 
-                                /* LOGO */
-                                .logo {
-                                  width: 100px;
-                                    border-radius: 50%;
-                                      margin-bottom: 10px;
-                                      }
+                                .card {
+                                    background: #111;
+                                        padding: 20px;
+                                            border-radius: 15px;
+                                                box-shadow: 0 0 20px cyan;
+                                                    width: 300px;
+                                                        margin: auto;
+                                                        }
 
-                                      /* BOX */
-                                      .box {
-                                        background: #1a1a1a;
-                                          padding: 12px;
-                                            margin: 8px 0;
-                                              border-radius: 10px;
-                                              }
-
-                                              /* BUTTON */
-                                              .btn {
-                                                width: 80%;
-                                                  padding: 12px;
-                                                    margin: 10px auto;
-                                                      display: block;
-                                                        border: none;
-                                                          border-radius: 25px;
-                                                            font-size: 16px;
-                                                              color: white;
-                                                                background: linear-gradient(45deg, #007bff, #00ffff);
+                                                        img {
+                                                            width: 80px;
+                                                                margin-bottom: 10px;
                                                                 }
 
-                                                                /* LOADING */
-                                                                #loading {
-                                                                  display: none;
-                                                                    margin-top: 10px;
-                                                                    }
-                                                                    </style>
-                                                                    </head>
+                                                                .box {
+                                                                    background: #222;
+                                                                        padding: 10px;
+                                                                            margin: 8px 0;
+                                                                                border-radius: 8px;
+                                                                                }
 
-                                                                    <body>
+                                                                                button {
+                                                                                    width: 100%;
+                                                                                        padding: 12px;
+                                                                                            margin-top: 10px;
+                                                                                                border: none;
+                                                                                                    border-radius: 20px;
+                                                                                                        background: linear-gradient(to right, blue, cyan);
+                                                                                                            color: white;
+                                                                                                                font-size: 16px;
+                                                                                                                }
 
-                                                                    <canvas id="matrix"></canvas>
+                                                                                                                button:hover {
+                                                                                                                    opacity: 0.8;
+                                                                                                                    }
 
-                                                                    <div class="card">
+                                                                                                                    #keyBox {
+                                                                                                                        margin-top: 10px;
+                                                                                                                            color: lime;
+                                                                                                                                font-weight: bold;
+                                                                                                                                }
+                                                                                                                                </style>
+                                                                                                                                </head>
 
-                                                                      <!-- LOGO -->
-                                                                        <img src="https://i.supaimg.com/8bbbe2d4-c7db-47de-9ede-7d1cafa9fcbe/a57051df-40f7-4b8d-ad1e-314eb50e1679.jpg" class="logo">
+                                                                                                                                <body>
 
-                                                                          <h3>GODXMODS NEW & SANDIP KEY GENERATE WEBSITE</h3>
+                                                                                                                                <div class="container">
+                                                                                                                                    <div class="card">
 
-                                                                            <div class="box">Game : GODXMODS S.M Free Fire</div>
-                                                                              <div class="box">Status : 1 Device</div>
-                                                                                <div class="box">Validity : 1 Hours</div>
+                                                                                                                                            <img src="https://i.supaimg.com/8bbbe2d4-c7db-47de-9ede-7d1cafa9fcbe/a57051df-40f7-4b8d-ad1e-314eb50e1679.jpg">
 
-                                                                                  <!-- BUTTONS -->
-                                                                                    <button class="btn" onclick="getKey()">GENERATE KEY</button>
-                                                                                      <button class="btn" onclick="openYT()">YOUTUBE</button>
-                                                                                        <button class="btn" onclick="openTG()">JOIN TELEGRAM</button>
+                                                                                                                                                    <h3>GODXMODS NEW & SANDIP KEY GENERATE</h3>
 
-                                                                                          <div id="loading">⏳ Loading...</div>
+                                                                                                                                                            <div class="box">Game: GODXMODS S.M Free Fire</div>
+                                                                                                                                                                    <div class="box">Status: 1 Device</div>
+                                                                                                                                                                            <div class="box">Validity: 1 Hours</div>
 
-                                                                                          </div>
+                                                                                                                                                                                    <button onclick="getKey()">GENERATE KEY</button>
 
-                                                                                          <script>
-                                                                                          // MATRIX EFFECT
-                                                                                          const canvas = document.getElementById("matrix");
-                                                                                          const ctx = canvas.getContext("2d");
+                                                                                                                                                                                            <button onclick="window.open('https://youtube.com/@godxmouds-ug1qe')">YOUTUBE</button>
+                                                                                                                                                                                                    <button onclick="window.open('https://t.me/e542k')">JOIN TELEGRAM</button>
 
-                                                                                          canvas.height = window.innerHeight;
-                                                                                          canvas.width = window.innerWidth;
+                                                                                                                                                                                                            <div id="keyBox"></div>
 
-                                                                                          const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                                                                                          const fontSize = 14;
-                                                                                          const columns = canvas.width / fontSize;
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                </div>
 
-                                                                                          const drops = [];
-                                                                                          for (let x = 0; x < columns; x++) drops[x] = 1;
+                                                                                                                                                                                                                <script>
+                                                                                                                                                                                                                async function getKey() {
+                                                                                                                                                                                                                    try {
+                                                                                                                                                                                                                            let res = await fetch('/api/generate');
+                                                                                                                                                                                                                                    let data = await res.json();
 
-                                                                                          function draw() {
-                                                                                            ctx.fillStyle = "rgba(0,0,0,0.05)";
-                                                                                              ctx.fillRect(0,0,canvas.width,canvas.height);
+                                                                                                                                                                                                                                            document.getElementById("keyBox").innerText = "KEY: " + data.key;
+                                                                                                                                                                                                                                                } catch (e) {
+                                                                                                                                                                                                                                                        document.getElementById("keyBox").innerText = "Error loading key!";
+                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                            </script>
 
-                                                                                                ctx.fillStyle = "#0F0";
-                                                                                                  ctx.font = fontSize + "px monospace";
-
-                                                                                                    for (let i = 0; i < drops.length; i++) {
-                                                                                                        const text = letters[Math.floor(Math.random()*letters.length)];
-                                                                                                            ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-
-                                                                                                                if (drops[i]*fontSize > canvas.height && Math.random() > 0.975)
-                                                                                                                      drops[i] = 0;
-
-                                                                                                                          drops[i]++;
-                                                                                                                            }
-                                                                                                                            }
-                                                                                                                            setInterval(draw, 33);
-
-                                                                                                                            // 🔥 GENERATE BUTTON (LINK ADD)
-                                                                                                                            function getKey() {
-                                                                                                                              document.getElementById("loading").style.display = "block";
-
-                                                                                                                                setTimeout(() => {
-                                                                                                                                    window.open("https://your-link.com", "_blank"); // 👉 अपना link डाल
-                                                                                                                                        document.getElementById("loading").style.display = "none";
-                                                                                                                                          }, 2000);
-                                                                                                                                          }
-
-                                                                                                                                          // YOUTUBE
-                                                                                                                                          function openYT() {
-                                                                                                                                            document.getElementById("loading").style.display = "block";
-                                                                                                                                              setTimeout(() => {
-                                                                                                                                                  window.open("https://youtube.com/@godxmouds-ug1qe", "_blank");
-                                                                                                                                                      document.getElementById("loading").style.display = "none";
-                                                                                                                                                        }, 2000);
-                                                                                                                                                        }
-
-                                                                                                                                                        // TELEGRAM
-                                                                                                                                                        function openTG() {
-                                                                                                                                                          document.getElementById("loading").style.display = "block";
-                                                                                                                                                            setTimeout(() => {
-                                                                                                                                                                window.open("https://t.me/e542k", "_blank");
-                                                                                                                                                                    document.getElementById("loading").style.display = "none";
-                                                                                                                                                                      }, 2000);
-                                                                                                                                                                      }
-                                                                                                                                                                      </script>
-
-                                                                                                                                                                      </body>
-                                                                                                                                                                      </html>
+                                                                                                                                                                                                                                                            </body>
+                                                                                                                                                                                                                                                            </html>
+                                                                                                                                                                                                                                                            
