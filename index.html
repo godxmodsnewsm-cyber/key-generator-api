@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>KEY GENERATOR</h2>
+
+<button onclick="gen()">GENERATE KEY</button>
+
+<script>
+async function gen() {
+  let res = await fetch('/api/generate');
+    let data = await res.json();
+      alert("Key: " + data.key);
+      }
+      </script>
+
+      </body>
+      </html>
