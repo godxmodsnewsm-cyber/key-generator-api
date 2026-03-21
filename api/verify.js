@@ -1,31 +1,45 @@
-require("../lib/db");
-const Key = require("../models/Key");
+import mongoose from "mongoose";
 
-module.exports = async (req, res) => {
+const MONGODB_URI = process.env.MONGODB_URI;
 
-    const { key, device } = req.body;
+if (!mongoose.connections[0].readyState) {
+  await mongoose.connect(MONGODB_URI);
+  }
 
-        if (!key) {
-                return res.json({ success: false, message: "Key missing" });
-                    }
+  const KeySchema = new mongoose.Schema({
+    key: String,
+      device: String,
+        used: Boolean,
+          createdAt: Date,
+          });
 
-                        const foundKey = await Key.findOne({ key });
+          const Key = mongoose.models.Key || mongoose.model("Key", KeySchema);
 
-                            if (!foundKey) {
-                                    return res.json({ success: false, message: "Invalid key" });
-                                        }
+          export default async function handler(req, res) {
+            try {
+                const { key, device } = req.body;
 
-                                            // अगर पहले use हो चुकी है
-                                                if (foundKey.used && foundKey.device !== device) {
-                                                        return res.json({ success: false, message: "Key already used on another device" });
-                                                            }
+                    if (!key) {
+                          return res.status(400).json({ success: false, message: "Key missing" });
+                              }
 
-                                                                // पहली बार use
-                                                                    if (!foundKey.used) {
-                                                                            foundKey.used = true;
-                                                                                    foundKey.device = device;
-                                                                                            await foundKey.save();
-                                                                                                }
+                                  const foundKey = await Key.findOne({ key });
 
-                                                                                                    return res.json({ success: true, message: "Key valid ✅" });
-                                                                                                    };
+                                      if (!foundKey) {
+                                            return res.status(404).json({ success: false, message: "Invalid key" });
+                                                }
+
+                                                    if (foundKey.used && foundKey.device !== device) {
+                                                          return res.status(403).json({ success: false, message: "Key already used" });
+                                                              }
+
+                                                                  // mark as used
+                                                                      foundKey.used = true;
+                                                                          foundKey.device = device;
+                                                                              await foundKey.save();
+
+                                                                                  return res.status(200).json({ success: true, message: "Key verified" });
+                                                                                    } catch (err) {
+                                                                                        return res.status(500).json({ error: err.message });
+                                                                                          }
+                                                                                          }
