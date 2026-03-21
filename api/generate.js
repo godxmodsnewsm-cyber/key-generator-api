@@ -1,24 +1,42 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
-export default async function handler(req, res) {
-  try {
-      const client = new MongoClient(process.env.MONGODB_URI);
-          await client.connect();
+const MONGODB_URI = process.env.MONGODB_URI;
 
-              const db = client.db("test"); // अपना DB name डाल
-                  const collection = db.collection("keys");
+// Connect DB
+if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(MONGODB_URI);
+    }
 
-                      const key = Math.random().toString(36).substring(2, 10);
+    // Schema
+    const KeySchema = new mongoose.Schema({
+        key: String,
+            device: String,
+                used: Boolean,
+                    createdAt: Date
+                    });
 
-                          await collection.insertOne({
-                                key: key,
-                                      used: false,
-                                            createdAt: new Date()
-                                                });
+                    const Key = mongoose.models.Key || mongoose.model("Key", KeySchema);
 
-                                                    res.status(200).json({ key });
-                                                      } catch (error) {
-                                                          console.log(error);
-                                                              res.status(500).json({ error: "Server error" });
-                                                                }
-                                                                }
+                    // Key generator
+                    function generateKey() {
+                        return Math.random().toString(36).substring(2, 10);
+                        }
+
+                        export default async function handler(req, res) {
+                            try {
+                                    const newKey = generateKey();
+
+                                            await Key.create({
+                                                        key: newKey,
+                                                                    device: null,
+                                                                                used: false,
+                                                                                            createdAt: new Date()
+                                                                                                    });
+
+                                                                                                            res.status(200).json({ key: newKey });
+
+                                                                                                                } catch (err) {
+                                                                                                                        console.error(err);
+                                                                                                                                res.status(500).json({ error: "Server error" });
+                                                                                                                                    }
+                                                                                                                                    }
