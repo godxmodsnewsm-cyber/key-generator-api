@@ -1,10 +1,10 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const KeySchema = new mongoose.Schema({
   key: String,
     device: String,
-      createdAt: Number,
-        used: Boolean
-        })
+      used: Boolean,
+        createdAt: Date,
+        });
 
-        export default mongoose.models.Key || mongoose.model("Key", KeySchema)
+        export default mongoose.models.Key || mongoose.model("Key", KeySchema);
