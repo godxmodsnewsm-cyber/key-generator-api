@@ -1,21 +1,20 @@
-import { connectDB } from "../lib/db"
-import Key from "../models/Key"
+require("../lib/db");
+const Key = require("../models/Key");
 
 function generateKey() {
-  return Math.random().toString(36).substring(2, 10).toUpperCase()
-  }
+    return Math.random().toString(36).substring(2, 10);
+    }
 
-  export default async function handler(req, res) {
-    await connectDB()
+    module.exports = async (req, res) => {
 
-      const newKey = generateKey()
+        const newKey = generateKey();
 
-        await Key.create({
-            key: newKey,
-                device: null,
-                    createdAt: Math.floor(Date.now() / 1000),
-                        used: false
-                          })
+            await Key.create({
+                    key: newKey,
+                            device: null,
+                                    used: false,
+                                            createdAt: new Date()
+                                                });
 
-                            res.json({ key: newKey })
-                            }
+                                                    res.json({ key: newKey });
+                                                    };

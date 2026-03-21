@@ -1,9 +1,8 @@
 {
     "name": "key-generator-api",
       "version": "1.0.0",
-        "main": "index.js",
-          "type": "module",
-            "dependencies": {
-                "mongoose": "^7.0.0"
-                  }
-                  }
+        "type": "module",
+          "dependencies": {
+              "mongoose": "^7.0.0"
+                }
+                }

@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const KeySchema = new mongoose.Schema({
   key: String,
     device: String,
-      used: Boolean,
-        createdAt: Date,
+      createdAt: Number,
+        used: Boolean
         });
 
         export default mongoose.models.Key || mongoose.model("Key", KeySchema);
