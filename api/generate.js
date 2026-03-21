@@ -1,36 +1,47 @@
 import mongoose from "mongoose";
 
+// MongoDB URI (Vercel env से आएगा)
 const MONGODB_URI = process.env.MONGODB_URI;
 
-if (!mongoose.connections[0].readyState) {
-  await mongoose.connect(MONGODB_URI);
-  }
+// Schema
+const KeySchema = new mongoose.Schema({
+  key: String,
+    device: String,
+      used: Boolean,
+        createdAt: {
+            type: Date,
+                default: Date.now,
+                  },
+                  });
 
-  const KeySchema = new mongoose.Schema({
-    key: String,
-      device: String,
-        used: Boolean,
-          createdAt: Date,
-          });
+                  // Model (duplicate error avoid)
+                  const KeyModel =
+                    mongoose.models.Key || mongoose.model("Key", KeySchema);
 
-          const Key = mongoose.models.Key || mongoose.model("Key", KeySchema);
+                    // DB connect function
+                    async function connectDB() {
+                      if (mongoose.connections[0].readyState) return;
+                        await mongoose.connect(MONGODB_URI);
+                        }
 
-          function generateKey() {
-            return Math.random().toString(36).substring(2, 10);
-            }
+                        // API handler
+                        export default async function handler(req, res) {
+                          await connectDB();
 
-            export default async function handler(req, res) {
-              try {
-                  const newKey = generateKey();
+                            if (req.method === "GET") {
+                                const newKey = Math.random().toString(36).substring(2, 10);
 
-                      await Key.create({
-                            key: newKey,
-                                  used: false,
-                                        createdAt: new Date(),
-                                            });
+                                    await KeyModel.create({
+                                          key: newKey,
+                                                device: "unknown",
+                                                      used: false,
+                                                          });
 
-                                                res.status(200).json({ key: newKey });
-                                                  } catch (err) {
-                                                      res.status(500).json({ error: err.message });
-                                                        }
-                                                        }
+                                                              return res.status(200).json({
+                                                                    success: true,
+                                                                          key: newKey,
+                                                                              });
+                                                                                }
+
+                                                                                  return res.status(405).json({ message: "Method not allowed" });
+                                                                                  }
