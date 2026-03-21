@@ -1,20 +1,20 @@
-require("../lib/db");
-const Key = require("../models/Key");
+import { MongoClient } from "mongodb";
 
-function generateKey() {
-    return Math.random().toString(36).substring(2, 10);
-    }
+export default async function handler(req, res) {
+  try {
+      const client = new MongoClient(process.env.MONGODB_URI);
+          await client.connect();
 
-    module.exports = async (req, res) => {
+              const db = client.db("test"); // 👉 यहाँ अपना DB name डाल
+                  const col = db.collection("keys");
 
-        const newKey = generateKey();
+                      const key = Math.random().toString(36).substring(2, 10);
 
-            await Key.create({
-                    key: newKey,
-                            device: null,
-                                    used: false,
-                                            createdAt: new Date()
-                                                });
+                          await col.insertOne({ key });
 
-                                                    res.json({ key: newKey });
-                                                    };
+                              res.status(200).json({ key });
+                                } catch (e) {
+                                    console.log(e);
+                                        res.status(500).json({ error: "Server error" });
+                                          }
+                                          }
