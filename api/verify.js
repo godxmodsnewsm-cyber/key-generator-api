@@ -46,4 +46,4 @@ export default async function handler(req, res) {
                                                                                     rng: Math.floor(Date.now() / 1000)
                                                                                         }
                                                                                           })
-                                                                                          }                                                         }
+                                                                                          }                                                                                    }                                                         }
